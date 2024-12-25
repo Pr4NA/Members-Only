@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <h1>Welcome to the Web-Site</h1>
+
+  <% if (!user) { %>
+    <div>
+      <a href="/log-in">LOG-IN</a>
+      <a href="/sign-up">SIGN-UP</a>
+    </div>
+  <% } else { %>
+    <div>
+      <a href="/add">Add new message</a>
+      <div>
+        <% if (messages.length === 0) { %>
+          <p>No messages to display.</p>
+        <% } else { %>
+          <% messages.forEach((message) => { %>
+            <div class="message">
+              <h2><%= message.title %></h2>
+              <div><%= message.message %></div>
+              <% if (user.is_member) { %>
+                <div>Created by: <%= message.created_by %></div>
+                <div>Created at: <%= new Date(message.created_at).toLocaleString() %></div>
+              <% } %>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+    <div>
+        <a href="/log-out">LOG-OUT</a>
+    </div>
+  <% } %>
+</body>
+</html>

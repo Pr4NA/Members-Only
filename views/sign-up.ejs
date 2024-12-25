@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Sign Up</h1>
+
+  <form action="/sign-up" method="POST">
+    
+    <div>
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="username" type="text" value="<%= formData.username || '' %>" />
+      <% if (errors && errors.length > 0) { 
+        const usernameError = errors.find(error => error.param === 'username');
+        if (usernameError) { %>
+          <p style="color: red;"><%= usernameError.msg %></p>
+      <% }} %>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <% if (errors && errors.length > 0) { 
+        const passwordError = errors.find(error => error.param === 'password');
+        if (passwordError) { %>
+          <p style="color: red;"><%= passwordError.msg %></p>
+      <% }} %>
+    </div>
+
+    <div>
+      <label for="ConfirmPassword">Confirm Password</label>
+      <input id="ConfirmPassword" name="ConfirmPassword" type="password" />
+      <% if (errors && errors.length > 0) { 
+        const confirmPasswordError = errors.find(error => error.param === 'ConfirmPassword');
+        if (confirmPasswordError) { %>
+          <p style="color: red;"><%= confirmPasswordError.msg %></p>
+      <% }} %>
+    </div>
+
+    <div>
+      <label for="Membership">Enter Pass-Code if you are a Member</label>
+      <input id="Membership" name="membership" type="password" />
+      <% if (errors && errors.length > 0) { 
+        const membershipError = errors.find(error => error.param === 'membership');
+        if (membershipError) { %>
+          <p style="color: red;"><%= membershipError.msg %></p>
+      <% }} %>
+    </div>
+
+    <button type="submit">SIGN UP</button>
+  </form>
+
+</body>
+</html>
